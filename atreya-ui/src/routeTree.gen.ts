@@ -12,6 +12,8 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
+import { Route as SignupIndexImport } from './routes/signup/index'
+import { Route as SigninIndexImport } from './routes/signin/index'
 import { Route as BlogIndexImport } from './routes/blog/index'
 import { Route as BlogPostIdImport } from './routes/blog/$postId'
 
@@ -19,6 +21,16 @@ import { Route as BlogPostIdImport } from './routes/blog/$postId'
 
 const IndexRoute = IndexImport.update({
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const SignupIndexRoute = SignupIndexImport.update({
+  path: '/signup/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const SigninIndexRoute = SigninIndexImport.update({
+  path: '/signin/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -57,6 +69,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogIndexImport
       parentRoute: typeof rootRoute
     }
+    '/signin/': {
+      id: '/signin/'
+      path: '/signin'
+      fullPath: '/signin'
+      preLoaderRoute: typeof SigninIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/signup/': {
+      id: '/signup/'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -66,6 +92,8 @@ export const routeTree = rootRoute.addChildren({
   IndexRoute,
   BlogPostIdRoute,
   BlogIndexRoute,
+  SigninIndexRoute,
+  SignupIndexRoute,
 })
 
 /* prettier-ignore-end */
@@ -78,7 +106,9 @@ export const routeTree = rootRoute.addChildren({
       "children": [
         "/",
         "/blog/$postId",
-        "/blog/"
+        "/blog/",
+        "/signin/",
+        "/signup/"
       ]
     },
     "/": {
@@ -89,6 +119,12 @@ export const routeTree = rootRoute.addChildren({
     },
     "/blog/": {
       "filePath": "blog/index.tsx"
+    },
+    "/signin/": {
+      "filePath": "signin/index.tsx"
+    },
+    "/signup/": {
+      "filePath": "signup/index.tsx"
     }
   }
 }
