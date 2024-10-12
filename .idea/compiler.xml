@@ -6,13 +6,21 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="atreya" />
+        <module name="resource-service" />
+        <module name="gateway-service" />
+        <module name="auth-service" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="atreya" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="atreya" options="-parameters" />
+      <module name="auth-service" options="-parameters" />
+      <module name="gateway-service" options="-parameters" />
+      <module name="resource-service" options="-parameters" />
     </option>
   </component>
 </project>
